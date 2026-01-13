@@ -1,0 +1,532 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Join Us - KofC St. Kevin Council #18180</title>
+    <link href="https://fonts.googleapis.com/css2?family=Crimson+Text:wght@400;600;700&family=Lato:wght@300;400;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --navy: #003366;
+            --gold: #C5A572;
+            --burgundy: #8B1538;
+            --white: #FFFFFF;
+            --cream: #FAF9F6;
+            --text-dark: #333333;
+            --text-light: #666666;
+        }
+
+        body {
+            font-family: 'Lato', sans-serif;
+            color: var(--text-dark);
+            line-height: 1.6;
+            background: var(--white);
+        }
+
+        nav {
+            background: var(--navy);
+            padding: 15px 0;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .nav-logo {
+            color: var(--gold);
+            font-size: 1.3em;
+            font-weight: 700;
+            font-family: 'Crimson Text', serif;
+            text-decoration: none;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 30px;
+            list-style: none;
+        }
+
+        .nav-links a {
+            color: var(--white);
+            text-decoration: none;
+            font-weight: 600;
+            transition: color 0.3s ease;
+        }
+
+        .nav-links a:hover,
+        .nav-links a.active {
+            color: var(--gold);
+        }
+
+        .menu-toggle {
+            display: none;
+            background: none;
+            border: none;
+            color: var(--white);
+            font-size: 1.5em;
+            cursor: pointer;
+        }
+
+        .page-header {
+            background: linear-gradient(135deg, var(--navy) 0%, #004080 100%);
+            color: var(--white);
+            padding: 80px 20px 60px;
+            text-align: center;
+        }
+
+        .page-header h1 {
+            font-family: 'Crimson Text', serif;
+            font-size: 3.5em;
+            margin-bottom: 15px;
+        }
+
+        .page-header p {
+            font-size: 1.2em;
+            opacity: 0.9;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 60px 20px;
+        }
+
+        .section {
+            margin-bottom: 80px;
+        }
+
+        .section h2 {
+            font-family: 'Crimson Text', serif;
+            font-size: 2.5em;
+            color: var(--navy);
+            margin-bottom: 30px;
+            text-align: center;
+        }
+
+        .intro-text {
+            font-size: 1.15em;
+            color: var(--text-dark);
+            max-width: 700px;
+            margin: 0 auto 40px;
+            text-align: center;
+        }
+
+        /* Requirements */
+        .requirements {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 30px;
+            margin: 40px 0;
+            text-align: center;
+        }
+
+        .requirement {
+            background: linear-gradient(135deg, var(--white) 0%, var(--cream) 100%);
+            padding: 40px 25px;
+            border-radius: 12px;
+            box-shadow: 
+                0 4px 20px rgba(0, 0, 0, 0.08),
+                inset 0 1px 0 rgba(255, 255, 255, 0.8);
+            border: 2px solid rgba(197, 165, 114, 0.2);
+            transition: all 0.4s ease;
+        }
+
+        .requirement:hover {
+            transform: translateY(-5px);
+            box-shadow: 
+                0 12px 30px rgba(0, 0, 0, 0.12),
+                inset 0 1px 0 rgba(255, 255, 255, 1);
+            border-color: var(--gold);
+        }
+
+        .requirement-icon {
+            font-size: 3em;
+            margin-bottom: 20px;
+            color: var(--navy);
+            font-weight: normal;
+            font-family: Georgia, serif;
+            display: inline-block;
+            width: 80px;
+            height: 80px;
+            line-height: 80px;
+            border-radius: 50%;
+            background: radial-gradient(circle at 30% 30%, 
+                rgba(0, 51, 102, 0.1) 0%, 
+                rgba(0, 51, 102, 0.03) 100%);
+            border: 2px solid rgba(0, 51, 102, 0.15);
+        }
+
+        .requirement h4 {
+            color: var(--navy);
+            margin-bottom: 12px;
+            font-family: 'Crimson Text', serif;
+            font-size: 1.3em;
+            font-weight: 600;
+        }
+
+        .requirement p {
+            color: var(--text-light);
+            font-size: 0.95em;
+            line-height: 1.5;
+        }
+
+        /* Steps */
+        .steps {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .step {
+            display: flex;
+            gap: 25px;
+            margin-bottom: 30px;
+            padding: 30px;
+            background: var(--cream);
+            border-radius: 10px;
+            border-left: 5px solid var(--gold);
+        }
+
+        .step-number {
+            flex-shrink: 0;
+            width: 50px;
+            height: 50px;
+            background: var(--gold);
+            color: var(--navy);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5em;
+            font-weight: 700;
+        }
+
+        .step-content h4 {
+            color: var(--navy);
+            margin-bottom: 10px;
+            font-size: 1.3em;
+        }
+
+        .step-content p {
+            color: var(--text-dark);
+        }
+
+        /* Contact Cards */
+        .contact-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-top: 40px;
+        }
+
+        .contact-card {
+            background: linear-gradient(135deg, var(--white) 0%, var(--cream) 100%);
+            padding: 40px 30px;
+            border-radius: 12px;
+            text-align: center;
+            transition: all 0.4s ease;
+            border: 2px solid rgba(197, 165, 114, 0.2);
+            box-shadow: 
+                0 4px 20px rgba(0, 0, 0, 0.08),
+                inset 0 1px 0 rgba(255, 255, 255, 0.8);
+        }
+
+        .contact-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 
+                0 12px 35px rgba(0, 0, 0, 0.15),
+                inset 0 1px 0 rgba(255, 255, 255, 1);
+            border-color: var(--gold);
+        }
+
+        .contact-icon {
+            font-size: 3em;
+            margin-bottom: 20px;
+            color: var(--gold);
+            display: inline-block;
+            width: 80px;
+            height: 80px;
+            line-height: 80px;
+            border-radius: 50%;
+            background: radial-gradient(circle at 30% 30%, 
+                rgba(197, 165, 114, 0.15) 0%, 
+                rgba(197, 165, 114, 0.05) 100%);
+            border: 2px solid rgba(197, 165, 114, 0.2);
+        }
+
+        .contact-card h4 {
+            color: var(--navy);
+            margin-bottom: 15px;
+            font-size: 1.4em;
+            font-family: 'Crimson Text', serif;
+            font-weight: 600;
+        }
+
+        .contact-card p {
+            color: var(--text-light);
+            line-height: 1.6;
+        }
+
+        .contact-card a {
+            color: var(--burgundy);
+            text-decoration: none;
+            font-weight: 600;
+            transition: color 0.3s ease;
+        }
+
+        .contact-card a:hover {
+            color: var(--gold);
+        }
+
+        /* CTA Section */
+        .cta-section {
+            background: linear-gradient(135deg, var(--burgundy) 0%, #6B1028 100%);
+            color: var(--white);
+            padding: 60px 40px;
+            border-radius: 12px;
+            text-align: center;
+            margin-top: 80px;
+        }
+
+        .cta-section h2 {
+            font-family: 'Crimson Text', serif;
+            font-size: 2.5em;
+            margin-bottom: 20px;
+            color: var(--white);
+        }
+
+        .cta-section p {
+            font-size: 1.2em;
+            margin-bottom: 30px;
+        }
+
+        .btn {
+            padding: 18px 45px;
+            font-size: 1.15em;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            text-decoration: none;
+            display: inline-block;
+            transition: all 0.4s ease;
+            font-weight: 700;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            background: linear-gradient(135deg, var(--gold) 0%, #D4B482 100%);
+            color: var(--navy);
+        }
+
+        .btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(197, 165, 114, 0.4);
+        }
+
+        footer {
+            background: var(--navy);
+            color: var(--white);
+            padding: 40px 20px;
+            text-align: center;
+            margin-top: 80px;
+        }
+
+        footer p {
+            margin-bottom: 10px;
+            color: rgba(255, 255, 255, 0.9);
+        }
+
+        @media (max-width: 768px) {
+            .page-header h1 {
+                font-size: 2.5em;
+            }
+
+            .requirements {
+                grid-template-columns: 1fr;
+            }
+
+            .nav-links {
+                display: none;
+                position: absolute;
+                top: 100%;
+                left: 0;
+                right: 0;
+                background: var(--navy);
+                flex-direction: column;
+                padding: 20px;
+                gap: 15px;
+            }
+
+            .nav-links.active {
+                display: flex;
+            }
+
+            .menu-toggle {
+                display: block;
+            }
+        }
+    </style>
+</head>
+<body>
+    <nav>
+        <div class="nav-container">
+            <a href="index.html" class="nav-logo">KofC St. Kevin #18180</a>
+            <button class="menu-toggle" onclick="toggleMenu()">☰</button>
+            <ul class="nav-links" id="navLinks">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="about.html">About</a></li>
+                <li><a href="events.html">Events</a></li>
+                <li><a href="leadership.html">Leadership</a></li>
+                <li><a href="join.html" class="active">Join</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <section class="page-header">
+        <h1>Join the Knights</h1>
+        <p>Become a brother in faith, service, and fellowship</p>
+    </section>
+
+    <div class="container">
+        <!-- Requirements -->
+        <section class="section">
+            <h2>Membership Requirements</h2>
+            <p class="intro-text">
+                Membership in the Knights of Columbus is open to practical Catholic men, age 18 or older, who are committed to growing in their faith and giving back to their community.
+            </p>
+            <div class="requirements">
+                <div class="requirement">
+                    <div class="requirement-icon">†</div>
+                    <h4>Catholic Faith</h4>
+                    <p>Must be a practicing Catholic man in union with the Holy See</p>
+                </div>
+                <div class="requirement">
+                    <div class="requirement-icon">XVIII</div>
+                    <h4>Age 18+</h4>
+                    <p>Open to men 18 years of age or older</p>
+                </div>
+                <div class="requirement">
+                    <div class="requirement-icon">⚖</div>
+                    <h4>Character</h4>
+                    <p>Men of good character who want to serve others</p>
+                </div>
+                <div class="requirement">
+                    <div class="requirement-icon">‡</div>
+                    <h4>Commitment</h4>
+                    <p>Desire to support church, community, and families</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- How to Join -->
+        <section class="section">
+            <h2>How to Join</h2>
+            <div class="steps">
+                <div class="step">
+                    <div class="step-number">1</div>
+                    <div class="step-content">
+                        <h4>Contact Us</h4>
+                        <p>Reach out to our Membership Chair or any council member to express your interest. We're happy to answer any questions you may have.</p>
+                    </div>
+                </div>
+                <div class="step">
+                    <div class="step-number">2</div>
+                    <div class="step-content">
+                        <h4>Meet the Brothers</h4>
+                        <p>Attend a council meeting or social event to get to know our members and learn more about our activities and mission.</p>
+                    </div>
+                </div>
+                <div class="step">
+                    <div class="step-number">3</div>
+                    <div class="step-content">
+                        <h4>Complete Application</h4>
+                        <p>Fill out the membership application form. Your application will be reviewed by the council.</p>
+                    </div>
+                </div>
+                <div class="step">
+                    <div class="step-number">4</div>
+                    <div class="step-content">
+                        <h4>Exemplification</h4>
+                        <p>Participate in the Exemplification of Charity, Unity, and Fraternity ceremony to become a full Knight.</p>
+                    </div>
+                </div>
+                <div class="step">
+                    <div class="step-number">5</div>
+                    <div class="step-content">
+                        <h4>Welcome to the Knights!</h4>
+                        <p>Begin your journey as a Knight of Columbus, serving God, your parish, and your community.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Contact -->
+        <section class="section">
+            <h2>Get In Touch</h2>
+            <p class="intro-text">We'd love to hear from you and answer any questions about membership</p>
+            <div class="contact-grid">
+                <div class="contact-card">
+                    <div class="contact-icon">📧</div>
+                    <h4>Email Us</h4>
+                    <p>
+                        <a href="mailto:st.Kevinskoc18180@gmail.com">st.Kevinskoc18180@gmail.com</a>
+                    </p>
+                    <p style="margin-top: 10px; font-size: 0.9em;">We typically respond within 24 hours</p>
+                </div>
+                <div class="contact-card">
+                    <div class="contact-icon">📞</div>
+                    <h4>Call Us</h4>
+                    <p>Tom Clune, Membership Chair</p>
+                    <p>
+                        <a href="tel:+16462657598">(646) 265-7598</a>
+                    </p>
+                    <p style="margin-top: 10px; font-size: 0.9em;">Available evenings and weekends</p>
+                </div>
+                <div class="contact-card">
+                    <div class="contact-icon">📍</div>
+                    <h4>Visit Us</h4>
+                    <p>St. Kevin RC Church</p>
+                    <p>45-21 194th Street</p>
+                    <p>Flushing, NY 11358</p>
+                    <p style="margin-top: 10px; font-size: 0.9em;">See our <a href="events.html" style="color: var(--burgundy);">events page</a> for meeting times</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- CTA -->
+        <div class="cta-section">
+            <h2>Ready to Begin Your Journey?</h2>
+            <p>Join a brotherhood of Catholic men making a difference in our parish and community</p>
+            <a href="mailto:st.Kevinskoc18180@gmail.com" class="btn">Contact Us Today</a>
+        </div>
+    </div>
+
+    <footer>
+        <div class="container">
+            <p><strong>St. Kevin Council #18180</strong></p>
+            <p>45-21 194th Street, Flushing, NY 11358</p>
+            <p>Email: st.Kevinskoc18180@gmail.com | Phone: (646) 265-7598</p>
+            <p style="margin-top: 20px; opacity: 0.8;">In Service to One, In Service to All</p>
+        </div>
+    </footer>
+
+    <script>
+        function toggleMenu() {
+            const navLinks = document.getElementById('navLinks');
+            navLinks.classList.toggle('active');
+        }
+    </script>
+</body>
+</html>

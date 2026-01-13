@@ -1,0 +1,453 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About Us - KofC St. Kevin Council #18180</title>
+    <link href="https://fonts.googleapis.com/css2?family=Crimson+Text:wght@400;600;700&family=Lato:wght@300;400;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --navy: #003366;
+            --gold: #C5A572;
+            --burgundy: #8B1538;
+            --white: #FFFFFF;
+            --cream: #FAF9F6;
+            --text-dark: #333333;
+            --text-light: #666666;
+        }
+
+        body {
+            font-family: 'Lato', sans-serif;
+            color: var(--text-dark);
+            line-height: 1.6;
+            background: var(--white);
+        }
+
+        /* Navigation */
+        nav {
+            background: var(--navy);
+            padding: 15px 0;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .nav-logo {
+            color: var(--gold);
+            font-size: 1.3em;
+            font-weight: 700;
+            font-family: 'Crimson Text', serif;
+            text-decoration: none;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 30px;
+            list-style: none;
+        }
+
+        .nav-links a {
+            color: var(--white);
+            text-decoration: none;
+            font-weight: 600;
+            transition: color 0.3s ease;
+        }
+
+        .nav-links a:hover,
+        .nav-links a.active {
+            color: var(--gold);
+        }
+
+        .menu-toggle {
+            display: none;
+            background: none;
+            border: none;
+            color: var(--white);
+            font-size: 1.5em;
+            cursor: pointer;
+        }
+
+        /* Page Header */
+        .page-header {
+            background: linear-gradient(135deg, var(--navy) 0%, #004080 100%);
+            color: var(--white);
+            padding: 80px 20px 60px;
+            text-align: center;
+        }
+
+        .page-header h1 {
+            font-family: 'Crimson Text', serif;
+            font-size: 3.5em;
+            margin-bottom: 15px;
+        }
+
+        .page-header p {
+            font-size: 1.2em;
+            opacity: 0.9;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 60px 20px;
+        }
+
+        .section {
+            margin-bottom: 80px;
+        }
+
+        .section h2 {
+            font-family: 'Crimson Text', serif;
+            font-size: 2.5em;
+            color: var(--navy);
+            margin-bottom: 30px;
+            text-align: center;
+        }
+
+        .about-text {
+            max-width: 900px;
+            margin: 0 auto 50px;
+            font-size: 1.1em;
+            line-height: 1.8;
+        }
+
+        .about-text p {
+            margin-bottom: 20px;
+        }
+
+        /* Principles Grid */
+        .principles {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 30px;
+            margin-top: 30px;
+        }
+
+        .principle {
+            background: linear-gradient(135deg, var(--white) 0%, var(--cream) 100%);
+            padding: 40px 30px;
+            border-radius: 12px;
+            border: 2px solid rgba(197, 165, 114, 0.2);
+            text-align: center;
+            transition: all 0.4s ease;
+            box-shadow: 
+                0 4px 15px rgba(0, 0, 0, 0.06),
+                inset 0 1px 0 rgba(255, 255, 255, 0.8);
+        }
+
+        .principle:hover {
+            transform: translateY(-5px);
+            border-color: var(--gold);
+            box-shadow: 
+                0 12px 30px rgba(0, 0, 0, 0.12),
+                inset 0 1px 0 rgba(255, 255, 255, 1);
+        }
+
+        .principle-icon {
+            font-size: 3em;
+            margin-bottom: 20px;
+            color: var(--burgundy);
+            font-weight: normal;
+            font-family: Georgia, serif;
+            display: inline-block;
+            width: 80px;
+            height: 80px;
+            line-height: 80px;
+            border-radius: 50%;
+            background: radial-gradient(circle at 30% 30%, 
+                rgba(197, 165, 114, 0.15) 0%, 
+                rgba(197, 165, 114, 0.05) 100%);
+            border: 2px solid rgba(139, 21, 56, 0.15);
+        }
+
+        .principle h4 {
+            color: var(--navy);
+            margin-bottom: 10px;
+            font-size: 1.3em;
+            font-family: 'Crimson Text', serif;
+            font-weight: 600;
+        }
+
+        .principle p {
+            font-size: 0.95em;
+            color: var(--text-light);
+        }
+
+        /* Impact Section */
+        .impact-section {
+            background: linear-gradient(135deg, var(--navy) 0%, #004080 100%);
+            color: var(--white);
+            padding: 80px 20px;
+            margin: 80px 0;
+        }
+
+        .impact-section h2 {
+            color: var(--white);
+            margin-bottom: 50px;
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 40px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .stat-card {
+            text-align: center;
+            padding: 40px 30px;
+            background: linear-gradient(135deg, 
+                rgba(255, 255, 255, 0.15) 0%, 
+                rgba(255, 255, 255, 0.08) 100%);
+            border-radius: 12px;
+            backdrop-filter: blur(10px);
+            border: 2px solid rgba(197, 165, 114, 0.2);
+            transition: all 0.4s ease;
+        }
+
+        .stat-card:hover {
+            background: linear-gradient(135deg, 
+                rgba(255, 255, 255, 0.2) 0%, 
+                rgba(255, 255, 255, 0.12) 100%);
+            transform: scale(1.05);
+            border-color: var(--gold);
+        }
+
+        .stat-number {
+            font-size: 3.5em;
+            font-weight: 700;
+            color: var(--gold);
+            display: block;
+            margin-bottom: 10px;
+            text-shadow: 0 2px 10px rgba(197, 165, 114, 0.3);
+        }
+
+        .stat-label {
+            font-size: 1.15em;
+            color: var(--white);
+            font-weight: 400;
+        }
+
+        /* Programs List */
+        .programs-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-top: 40px;
+        }
+
+        .program-card {
+            background: var(--cream);
+            padding: 30px;
+            border-radius: 10px;
+            border-left: 4px solid var(--burgundy);
+            transition: all 0.3s ease;
+        }
+
+        .program-card:hover {
+            transform: translateX(5px);
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+        }
+
+        .program-card h4 {
+            color: var(--navy);
+            font-size: 1.3em;
+            margin-bottom: 15px;
+            font-family: 'Crimson Text', serif;
+        }
+
+        .program-card p {
+            color: var(--text-dark);
+        }
+
+        footer {
+            background: var(--navy);
+            color: var(--white);
+            padding: 40px 20px;
+            text-align: center;
+        }
+
+        footer p {
+            margin-bottom: 10px;
+            color: rgba(255, 255, 255, 0.9);
+        }
+
+        @media (max-width: 768px) {
+            .page-header h1 {
+                font-size: 2.5em;
+            }
+
+            .principles {
+                grid-template-columns: 1fr;
+            }
+
+            .nav-links {
+                display: none;
+                position: absolute;
+                top: 100%;
+                left: 0;
+                right: 0;
+                background: var(--navy);
+                flex-direction: column;
+                padding: 20px;
+                gap: 15px;
+            }
+
+            .nav-links.active {
+                display: flex;
+            }
+
+            .menu-toggle {
+                display: block;
+            }
+        }
+    </style>
+</head>
+<body>
+    <nav>
+        <div class="nav-container">
+            <a href="index.html" class="nav-logo">KofC St. Kevin #18180</a>
+            <button class="menu-toggle" onclick="toggleMenu()">☰</button>
+            <ul class="nav-links" id="navLinks">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="about.html" class="active">About</a></li>
+                <li><a href="events.html">Events</a></li>
+                <li><a href="leadership.html">Leadership</a></li>
+                <li><a href="join.html">Join</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <section class="page-header">
+        <h1>About Our Council</h1>
+        <p>Brotherhood founded on faith, service, and charity</p>
+    </section>
+
+    <div class="container">
+        <section class="section">
+            <h2>Who We Are</h2>
+            <div class="about-text">
+                <p>The Knights of Columbus are Catholic men of faith and men of charitable action. Membership in the Knights of Columbus provides an association with brotherly companions. It offers the opportunity for fellowship with those of the same belief who recognize the same duty to God, to family and to neighbor, and who stand with those who share those beliefs.</p>
+                
+                <p>Programs are organized to appeal to the individual interests of the members and to enable them to render service to their church, their country, and their fellow men. Regularly-scheduled times of prayer and devotion are also part of the Knights' charism, helping brothers to grow deeper in their relationship with Jesus.</p>
+                
+                <p><strong>St. Kevin Council 18180 was founded in 2023</strong> with the goal of providing additional support and volunteerism to St. Kevin Parish and the Auburndale Community. We offer men a place to lead their families and communities in faith and service and put their Faith into Action.</p>
+            </div>
+        </section>
+
+        <section class="section">
+            <h2>Our Four Principles</h2>
+            <div class="principles">
+                <div class="principle">
+                    <div class="principle-icon">✝</div>
+                    <h4>Charity</h4>
+                    <p>Supporting those in need</p>
+                </div>
+                <div class="principle">
+                    <div class="principle-icon">☨</div>
+                    <h4>Unity</h4>
+                    <p>Building parish community</p>
+                </div>
+                <div class="principle">
+                    <div class="principle-icon">✠</div>
+                    <h4>Fraternity</h4>
+                    <p>Brotherhood in Christ</p>
+                </div>
+                <div class="principle">
+                    <div class="principle-icon">✞</div>
+                    <h4>Patriotism</h4>
+                    <p>Serving God and country</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="section">
+            <h2>Our Programs & Initiatives</h2>
+            <div class="programs-grid">
+                <div class="program-card">
+                    <h4>Thanksgiving Feast</h4>
+                    <p>Annual community dinner providing meals to families in need during the holiday season.</p>
+                </div>
+                <div class="program-card">
+                    <h4>Christmas Angel Tree</h4>
+                    <p>Collecting gifts for children and families experiencing hardship during Christmas.</p>
+                </div>
+                <div class="program-card">
+                    <h4>Youth Free Throw Contest</h4>
+                    <p>Annual basketball competition for youth ages 9-14, promoting sportsmanship and healthy competition.</p>
+                </div>
+                <div class="program-card">
+                    <h4>Food Pantry Support</h4>
+                    <p>Regular volunteers supporting St. Kevin's food pantry, serving families throughout the year.</p>
+                </div>
+                <div class="program-card">
+                    <h4>Parish Campus Projects</h4>
+                    <p>Maintaining and improving parish grounds and facilities through volunteer work.</p>
+                </div>
+                <div class="program-card">
+                    <h4>Family Social Events</h4>
+                    <p>Building community through pancake breakfasts, family nights, and fellowship gatherings.</p>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <section class="impact-section">
+        <div class="container">
+            <h2>Our Impact</h2>
+            <p style="text-align: center; font-size: 1.2em; margin-bottom: 50px;">Serving St. Kevin Parish and the Auburndale Community since 2023</p>
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <span class="stat-number">500+</span>
+                    <span class="stat-label">Service Hours</span>
+                </div>
+                <div class="stat-card">
+                    <span class="stat-number">50+</span>
+                    <span class="stat-label">Families Served</span>
+                </div>
+                <div class="stat-card">
+                    <span class="stat-number">$10K+</span>
+                    <span class="stat-label">Raised for Charity</span>
+                </div>
+                <div class="stat-card">
+                    <span class="stat-number">100%</span>
+                    <span class="stat-label">Commitment to Service</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <p><strong>St. Kevin Council #18180</strong></p>
+            <p>45-21 194th Street, Flushing, NY 11358</p>
+            <p>Email: st.Kevinskoc18180@gmail.com | Phone: (646) 265-7598</p>
+            <p style="margin-top: 20px; opacity: 0.8;">In Service to One, In Service to All</p>
+        </div>
+    </footer>
+
+    <script>
+        function toggleMenu() {
+            const navLinks = document.getElementById('navLinks');
+            navLinks.classList.toggle('active');
+        }
+    </script>
+</body>
+</html>

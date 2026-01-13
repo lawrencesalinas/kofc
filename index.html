@@ -1,0 +1,584 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Knights of Columbus - St. Kevin Parish Council #18180</title>
+    <link href="https://fonts.googleapis.com/css2?family=Crimson+Text:wght@400;600;700&family=Lato:wght@300;400;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --navy: #003366;
+            --gold: #C5A572;
+            --burgundy: #8B1538;
+            --white: #FFFFFF;
+            --cream: #FAF9F6;
+            --text-dark: #333333;
+            --text-light: #666666;
+        }
+
+        body {
+            font-family: 'Lato', sans-serif;
+            color: var(--text-dark);
+            line-height: 1.6;
+            overflow-x: hidden;
+            background: var(--white);
+        }
+
+        /* Navigation */
+        nav {
+            background: var(--navy);
+            padding: 15px 0;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .nav-logo {
+            color: var(--gold);
+            font-size: 1.3em;
+            font-weight: 700;
+            font-family: 'Crimson Text', serif;
+            text-decoration: none;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 30px;
+            list-style: none;
+        }
+
+        .nav-links a {
+            color: var(--white);
+            text-decoration: none;
+            font-weight: 600;
+            transition: color 0.3s ease;
+            position: relative;
+        }
+
+        .nav-links a:hover {
+            color: var(--gold);
+        }
+
+        .nav-links a.active {
+            color: var(--gold);
+        }
+
+        .menu-toggle {
+            display: none;
+            background: none;
+            border: none;
+            color: var(--white);
+            font-size: 1.5em;
+            cursor: pointer;
+        }
+
+        /* Hero Section */
+        .hero {
+            background: 
+                linear-gradient(135deg, rgba(0, 51, 102, 0.97) 0%, rgba(0, 64, 128, 0.95) 100%),
+                repeating-linear-gradient(
+                    45deg,
+                    transparent,
+                    transparent 10px,
+                    rgba(197, 165, 114, 0.03) 10px,
+                    rgba(197, 165, 114, 0.03) 20px
+                ),
+                var(--navy);
+            color: var(--white);
+            padding: 140px 20px 100px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 1;
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        .emblem {
+            width: 180px;
+            height: 180px;
+            margin: 0 auto 40px;
+            background: radial-gradient(circle at 30% 30%, var(--white) 0%, #F5F5F5 100%);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 25px;
+            border: 6px solid var(--gold);
+            box-shadow: 0 15px 50px rgba(0, 0, 0, 0.5);
+        }
+
+        .emblem img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+        }
+
+        h1 {
+            font-family: 'Crimson Text', serif;
+            font-size: 5em;
+            font-weight: 700;
+            margin-bottom: 25px;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            text-shadow: 3px 3px 6px rgba(0, 0, 0, 0.5);
+        }
+
+        .hero-subtitle {
+            font-size: 1.6em;
+            margin-bottom: 15px;
+            color: var(--gold);
+            font-weight: 400;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+        }
+
+        .hero-tagline {
+            font-size: 1.4em;
+            margin-bottom: 50px;
+            font-style: italic;
+            font-weight: 400;
+            color: var(--white);
+        }
+
+        .cta-buttons {
+            display: flex;
+            gap: 20px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            padding: 18px 45px;
+            font-size: 1.15em;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            text-decoration: none;
+            display: inline-block;
+            transition: all 0.4s ease;
+            font-weight: 700;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, var(--gold) 0%, #D4B482 100%);
+            color: var(--navy);
+            box-shadow: 0 8px 20px rgba(197, 165, 114, 0.4);
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 12px 30px rgba(197, 165, 114, 0.5);
+        }
+
+        .btn-secondary {
+            background: transparent;
+            color: var(--white);
+            border: 2px solid var(--gold);
+        }
+
+        .btn-secondary:hover {
+            background: var(--gold);
+            color: var(--navy);
+            transform: translateY(-3px);
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 60px 20px;
+        }
+
+        /* Welcome Section */
+        .welcome {
+            background: var(--white);
+            padding: 80px 20px;
+        }
+
+        .welcome-content {
+            max-width: 900px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        .welcome h2 {
+            font-family: 'Crimson Text', serif;
+            font-size: 3em;
+            color: var(--navy);
+            margin-bottom: 30px;
+        }
+
+        .welcome p {
+            font-size: 1.2em;
+            line-height: 1.8;
+            color: var(--text-dark);
+            margin-bottom: 20px;
+        }
+
+        /* Upcoming Events */
+        .upcoming-events {
+            background: var(--cream);
+            padding: 80px 20px;
+        }
+
+        .section-title {
+            font-family: 'Crimson Text', serif;
+            font-size: 2.8em;
+            color: var(--navy);
+            text-align: center;
+            margin-bottom: 50px;
+        }
+
+        .event-featured {
+            background: linear-gradient(135deg, var(--burgundy) 0%, #6B1028 100%);
+            color: var(--white);
+            padding: 50px;
+            border-radius: 12px;
+            margin-bottom: 30px;
+            box-shadow: 0 8px 30px rgba(139, 21, 56, 0.3);
+        }
+
+        .event-featured .date {
+            font-size: 1em;
+            font-weight: 700;
+            text-transform: uppercase;
+            margin-bottom: 15px;
+            color: var(--gold);
+        }
+
+        .event-featured h3 {
+            font-family: 'Crimson Text', serif;
+            font-size: 2.2em;
+            margin-bottom: 20px;
+        }
+
+        .event-featured p {
+            font-size: 1.1em;
+            line-height: 1.7;
+        }
+
+        .events-list {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 25px;
+        }
+
+        .event-item {
+            background: var(--white);
+            padding: 30px;
+            border-radius: 10px;
+            border-left: 4px solid var(--gold);
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+            transition: all 0.3s ease;
+        }
+
+        .event-item:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.12);
+        }
+
+        .event-item .date {
+            color: var(--burgundy);
+            font-weight: 700;
+            font-size: 0.95em;
+            margin-bottom: 10px;
+        }
+
+        .event-item h4 {
+            font-family: 'Crimson Text', serif;
+            font-size: 1.4em;
+            color: var(--navy);
+            margin-bottom: 10px;
+        }
+
+        .event-item p {
+            color: var(--text-dark);
+        }
+
+        .view-more {
+            text-align: center;
+            margin-top: 40px;
+        }
+
+        .view-more a {
+            color: var(--burgundy);
+            font-weight: 700;
+            font-size: 1.1em;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .view-more a:hover {
+            color: var(--gold);
+        }
+
+        /* Impact Stats */
+        .impact {
+            background: linear-gradient(135deg, var(--navy) 0%, #004080 100%);
+            padding: 80px 20px;
+            color: var(--white);
+            text-align: center;
+        }
+
+        .impact h2 {
+            font-family: 'Crimson Text', serif;
+            font-size: 2.8em;
+            margin-bottom: 20px;
+        }
+
+        .impact-intro {
+            font-size: 1.2em;
+            margin-bottom: 50px;
+            opacity: 0.9;
+        }
+
+        .stats {
+            display: flex;
+            justify-content: space-around;
+            flex-wrap: wrap;
+            gap: 40px;
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        .stat {
+            text-align: center;
+            min-width: 150px;
+        }
+
+        .stat-number {
+            font-size: 4em;
+            font-weight: 700;
+            color: var(--gold);
+            display: block;
+            margin-bottom: 10px;
+            font-family: 'Crimson Text', serif;
+        }
+
+        .stat-label {
+            font-size: 1.1em;
+            color: var(--white);
+        }
+
+        /* CTA Section */
+        .final-cta {
+            padding: 100px 20px;
+            text-align: center;
+            background: var(--white);
+        }
+
+        .final-cta h2 {
+            font-family: 'Crimson Text', serif;
+            font-size: 3em;
+            color: var(--navy);
+            margin-bottom: 20px;
+        }
+
+        .final-cta p {
+            font-size: 1.3em;
+            color: var(--text-dark);
+            margin-bottom: 40px;
+        }
+
+        /* Footer */
+        footer {
+            background: var(--navy);
+            color: var(--white);
+            padding: 40px 20px;
+            text-align: center;
+        }
+
+        footer p {
+            margin-bottom: 10px;
+            color: rgba(255, 255, 255, 0.9);
+        }
+
+        /* Mobile Responsive */
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 3em;
+            }
+
+            .hero {
+                padding: 100px 20px 70px;
+            }
+
+            .emblem {
+                width: 140px;
+                height: 140px;
+            }
+
+            .events-list {
+                grid-template-columns: 1fr;
+            }
+
+            .stats {
+                flex-direction: column;
+            }
+
+            .nav-links {
+                display: none;
+                position: absolute;
+                top: 100%;
+                left: 0;
+                right: 0;
+                background: var(--navy);
+                flex-direction: column;
+                padding: 20px;
+                gap: 15px;
+            }
+
+            .nav-links.active {
+                display: flex;
+            }
+
+            .menu-toggle {
+                display: block;
+            }
+        }
+    </style>
+</head>
+<body>
+    <nav>
+        <div class="nav-container">
+            <a href="index.html" class="nav-logo">KofC St. Kevin #18180</a>
+            <button class="menu-toggle" onclick="toggleMenu()">☰</button>
+            <ul class="nav-links" id="navLinks">
+                <li><a href="index.html" class="active">Home</a></li>
+                <li><a href="about.html">About</a></li>
+                <li><a href="events.html">Events</a></li>
+                <li><a href="leadership.html">Leadership</a></li>
+                <li><a href="join.html">Join</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Hero -->
+    <section class="hero">
+        <div class="hero-content">
+            <div class="emblem">
+                <img src="https://uploads.weconnect.com/e3e176132ac7f8b7e683702a791a66ce9fdfc65d/l99u5k1tmfrzllo66lgc82qjo1l.png" alt="Knights of Columbus Logo">
+            </div>
+            <h1>Knights of Columbus</h1>
+            <p class="hero-subtitle">✦ St. Kevin Parish Council #18180 ✦</p>
+            <p class="hero-tagline">"In Service to One, In Service to All"</p>
+            <div class="cta-buttons">
+                <a href="join.html" class="btn btn-primary">Become a Knight</a>
+                <a href="events.html" class="btn btn-secondary">Upcoming Events</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Welcome -->
+    <section class="welcome">
+        <div class="welcome-content">
+            <h2>Welcome to Our Council</h2>
+            <p>St. Kevin Council 18180 is a brotherhood of Catholic men dedicated to serving our parish, community, and families. Founded in 2023, we bring together men of faith who want to make a real difference through charitable works, prayer, and fellowship.</p>
+            <p>Whether you're looking to grow in your faith, serve others, or build lasting friendships with like-minded Catholic men, you'll find a home here.</p>
+        </div>
+    </section>
+
+    <!-- Upcoming Events -->
+    <section class="upcoming-events">
+        <div class="container">
+            <h2 class="section-title">Upcoming Events</h2>
+            
+            <div class="event-featured">
+                <p class="date">January 18, 2026</p>
+                <h3>Annual Pro-Life Mass at St. Patrick's Cathedral</h3>
+                <p>Join His Eminence Cardinal Timothy Dolan for the Annual Pro-Life Mass at St. Patrick's Cathedral. Mass begins at 2:00 PM, followed by fellowship. All Knights and families welcome to attend this important celebration of life.</p>
+            </div>
+
+            <div class="events-list">
+                <div class="event-item">
+                    <p class="date">January 25, 2026</p>
+                    <h4>Pro Vita Mass Brooklyn</h4>
+                    <p>Join Bishop Robert Brennan at St. James Cathedral-Basilica, 10:00 AM.</p>
+                </div>
+                <div class="event-item">
+                    <p class="date">February 15, 2026</p>
+                    <h4>Food Pantry Volunteer Day</h4>
+                    <p>Help serve families in need at St. Kevin Food Pantry. 9:00 AM - 12:00 PM.</p>
+                </div>
+            </div>
+
+            <div class="view-more">
+                <a href="events.html">View Full Calendar →</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Impact Stats -->
+    <section class="impact">
+        <div class="container">
+            <h2>Our Impact in the Community</h2>
+            <p class="impact-intro">Serving St. Kevin Parish and Auburndale since 2023</p>
+            <div class="stats">
+                <div class="stat">
+                    <span class="stat-number">500+</span>
+                    <span class="stat-label">Service Hours</span>
+                </div>
+                <div class="stat">
+                    <span class="stat-number">50+</span>
+                    <span class="stat-label">Families Served</span>
+                </div>
+                <div class="stat">
+                    <span class="stat-number">$10K+</span>
+                    <span class="stat-label">Raised for Charity</span>
+                </div>
+                <div class="stat">
+                    <span class="stat-number">100%</span>
+                    <span class="stat-label">Commitment</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Final CTA -->
+    <section class="final-cta">
+        <h2>Ready to Make a Difference?</h2>
+        <p>Join a brotherhood of Catholic men serving God, parish, and community</p>
+        <a href="join.html" class="btn btn-primary" style="font-size: 1.2em; padding: 20px 50px;">Join the Knights Today</a>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <p><strong>St. Kevin Council #18180</strong></p>
+            <p>45-21 194th Street, Flushing, NY 11358</p>
+            <p>Email: st.Kevinskoc18180@gmail.com | Phone: (646) 265-7598</p>
+            <p style="margin-top: 20px; opacity: 0.8;">In Service to One, In Service to All</p>
+            <p style="margin-top: 10px; font-size: 0.9em; opacity: 0.7;">&copy; 2026 Knights of Columbus Council #18180. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script>
+        function toggleMenu() {
+            const navLinks = document.getElementById('navLinks');
+            navLinks.classList.toggle('active');
+        }
+    </script>
+</body>
+</html>
