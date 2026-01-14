@@ -1,0 +1,494 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Meeting Minutes - KofC St. Kevin Council #18180</title>
+    <link href="https://fonts.googleapis.com/css2?family=Crimson+Text:wght@400;600;700&family=Lato:wght@300;400;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --navy: #003366;
+            --gold: #C5A572;
+            --burgundy: #8B1538;
+            --white: #FFFFFF;
+            --cream: #FAF9F6;
+            --text-dark: #333333;
+            --text-light: #666666;
+        }
+
+        body {
+            font-family: 'Lato', sans-serif;
+            color: var(--text-dark);
+            line-height: 1.6;
+            background: var(--white);
+        }
+
+        nav {
+            background: var(--navy);
+            padding: 15px 0;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .nav-logo {
+            color: var(--gold);
+            font-size: 1.3em;
+            font-weight: 700;
+            font-family: 'Crimson Text', serif;
+            text-decoration: none;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 30px;
+            list-style: none;
+        }
+
+        .nav-links a {
+            color: var(--white);
+            text-decoration: none;
+            font-weight: 600;
+            transition: color 0.3s ease;
+        }
+
+        .nav-links a:hover,
+        .nav-links a.active {
+            color: var(--gold);
+        }
+
+        .menu-toggle {
+            display: none;
+            background: none;
+            border: none;
+            color: var(--white);
+            font-size: 1.5em;
+            cursor: pointer;
+        }
+
+        .page-header {
+            background: linear-gradient(135deg, var(--navy) 0%, #004080 100%);
+            color: var(--white);
+            padding: 80px 20px 60px;
+            text-align: center;
+        }
+
+        .page-header h1 {
+            font-family: 'Crimson Text', serif;
+            font-size: 3.5em;
+            margin-bottom: 15px;
+        }
+
+        .page-header p {
+            font-size: 1.2em;
+            opacity: 0.9;
+        }
+
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 60px 20px;
+        }
+
+        .intro-note {
+            background: var(--cream);
+            padding: 25px;
+            border-radius: 8px;
+            margin-bottom: 50px;
+            border-left: 4px solid var(--gold);
+        }
+
+        .intro-note p {
+            color: var(--text-dark);
+            line-height: 1.7;
+        }
+
+        /* Minutes Document */
+        .minutes-document {
+            background: var(--white);
+            padding: 50px;
+            border-radius: 12px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+            border: 2px solid rgba(197, 165, 114, 0.2);
+        }
+
+        .minutes-header {
+            text-align: center;
+            margin-bottom: 40px;
+            padding-bottom: 30px;
+            border-bottom: 3px solid var(--gold);
+        }
+
+        .minutes-header h2 {
+            font-family: 'Crimson Text', serif;
+            font-size: 2.5em;
+            color: var(--navy);
+            margin-bottom: 10px;
+        }
+
+        .meeting-date {
+            font-size: 1.2em;
+            color: var(--burgundy);
+            font-weight: 600;
+        }
+
+        .minutes-content {
+            line-height: 2;
+        }
+
+        .minutes-content p {
+            margin-bottom: 20px;
+            color: var(--text-dark);
+        }
+
+        .minutes-content strong {
+            color: var(--navy);
+            font-weight: 600;
+        }
+
+        .section-title {
+            font-family: 'Crimson Text', serif;
+            font-size: 1.5em;
+            color: var(--navy);
+            margin-top: 30px;
+            margin-bottom: 15px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid var(--cream);
+        }
+
+        .attendance-table {
+            margin: 30px 0;
+            background: var(--cream);
+            padding: 25px;
+            border-radius: 8px;
+        }
+
+        .attendance-table h3 {
+            font-family: 'Crimson Text', serif;
+            color: var(--navy);
+            margin-bottom: 20px;
+        }
+
+        .officer-row {
+            display: grid;
+            grid-template-columns: 2fr 2fr 1fr;
+            padding: 12px 0;
+            border-bottom: 1px solid rgba(197, 165, 114, 0.2);
+        }
+
+        .officer-row:last-child {
+            border-bottom: none;
+        }
+
+        .officer-title {
+            font-weight: 600;
+            color: var(--navy);
+        }
+
+        .officer-name {
+            color: var(--text-dark);
+        }
+
+        .status {
+            text-align: right;
+            font-weight: 600;
+        }
+
+        .status.present {
+            color: #2e7d32;
+        }
+
+        .status.absent {
+            color: #c62828;
+        }
+
+        .status.excused {
+            color: #f57c00;
+        }
+
+        .legend {
+            margin-top: 15px;
+            padding-top: 15px;
+            border-top: 1px solid rgba(197, 165, 114, 0.2);
+            font-size: 0.9em;
+            color: var(--text-light);
+        }
+
+        .closing-info {
+            margin-top: 40px;
+            padding-top: 30px;
+            border-top: 3px solid var(--gold);
+            text-align: center;
+        }
+
+        .closing-info p {
+            margin-bottom: 10px;
+            color: var(--text-dark);
+        }
+
+        .next-meetings {
+            background: linear-gradient(135deg, var(--burgundy) 0%, #6B1028 100%);
+            color: var(--white);
+            padding: 25px;
+            border-radius: 8px;
+            margin-top: 20px;
+        }
+
+        .next-meetings h4 {
+            font-family: 'Crimson Text', serif;
+            font-size: 1.4em;
+            margin-bottom: 10px;
+        }
+
+        footer {
+            background: var(--navy);
+            color: var(--white);
+            padding: 40px 20px;
+            text-align: center;
+            margin-top: 80px;
+        }
+
+        footer p {
+            margin-bottom: 10px;
+            color: rgba(255, 255, 255, 0.9);
+        }
+
+        @media (max-width: 768px) {
+            .page-header h1 {
+                font-size: 2.5em;
+            }
+
+            .minutes-document {
+                padding: 30px 20px;
+            }
+
+            .officer-row {
+                grid-template-columns: 1fr;
+                gap: 5px;
+                padding: 15px 0;
+            }
+
+            .status {
+                text-align: left;
+            }
+
+            .nav-links {
+                display: none;
+                position: absolute;
+                top: 100%;
+                left: 0;
+                right: 0;
+                background: var(--navy);
+                flex-direction: column;
+                padding: 20px;
+                gap: 15px;
+            }
+
+            .nav-links.active {
+                display: flex;
+            }
+
+            .menu-toggle {
+                display: block;
+            }
+        }
+    </style>
+</head>
+<body>
+    <nav>
+        <div class="nav-container">
+            <a href="index.html" class="nav-logo">KofC St. Kevin #18180</a>
+            <button class="menu-toggle" onclick="toggleMenu()">☰</button>
+            <ul class="nav-links" id="navLinks">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="about.html">About</a></li>
+                <li><a href="events.html">Events</a></li>
+                <li><a href="leadership.html">Leadership</a></li>
+                <li><a href="minutes.html" class="active">Minutes</a></li>
+                <li><a href="join.html">Join</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <section class="page-header">
+        <h1>Council Meeting Minutes</h1>
+        <p>Official records of St. Kevin Council #18180</p>
+    </section>
+
+    <div class="container">
+        <div class="intro-note">
+            <p><strong>For Members:</strong> Meeting minutes are posted here after each council meeting. If you have questions about any items discussed, please contact the Recorder or Grand Knight.</p>
+        </div>
+
+        <!-- Most Recent Minutes -->
+        <div class="minutes-document">
+            <div class="minutes-header">
+                <h2>Minutes of St. Kevin Council #18180</h2>
+                <p class="meeting-date">Tuesday, December 9th, 2025 • 7:20 PM</p>
+                <p style="color: var(--text-light); margin-top: 10px;">Parish Center</p>
+            </div>
+
+            <div class="minutes-content">
+                <p><strong>Opening:</strong> At 07:20 PM, the Acting Grand Knight opened the meeting with a Prayer and the Pledge of Allegiance.</p>
+
+                <h3 class="section-title">District Deputy Report</h3>
+                <p>DD Belviso spoke again about the need for a membership drive.</p>
+
+                <h3 class="section-title">Upcoming Events</h3>
+                <p><strong>January 18th, 2026:</strong> Mass for Life at St. Patrick's Cathedral at 10:00 AM.</p>
+                <p><strong>January 25th, 2026:</strong> Memorial Mass at St. James Cathedral-Basilica, Brooklyn at 11:00 AM.</p>
+
+                <h3 class="section-title">New Meeting Schedule</h3>
+                <p>The new meeting schedule is now in effect:</p>
+                <p><strong>Officers Meeting:</strong> Second Tuesday of each month at 7:30 PM</p>
+                <p><strong>General Meeting:</strong> Fourth Saturday of each month at 9:45 AM</p>
+
+                <h3 class="section-title">Treasury Report</h3>
+                <p><strong>Current Balance:</strong> $6,340</p>
+
+                <h3 class="section-title">Chaplain's Report - Father Mark</h3>
+                <p>On Sunday, January 4th, 2026 at the 11:00 AM Mass, Bishop Massa will open the Centennial year for St. Kevin's Parish. The Mass will be followed by a Continental breakfast in the Parish Center, supplied, set-up, and handled by the church. KofC St. Kevin Council is requested to be on hand for assistance and clean-up.</p>
+
+                <h3 class="section-title">Programs</h3>
+                <p><strong>Basketball Free Throw Contest:</strong> Still need to confirm the January 10th, 2026 date.</p>
+
+                <h3 class="section-title">Communications</h3>
+                <p><strong>Council Email:</strong> St. Kevin Council email is up and running at <a href="mailto:st.kevinskoc18180@gmail.com" style="color: var(--burgundy); font-weight: 600;">st.kevinskoc18180@gmail.com</a></p>
+
+                <!-- Attendance -->
+                <div class="attendance-table">
+                    <h3>Council Officers in Attendance</h3>
+                    
+                    <div class="officer-row">
+                        <span class="officer-title">Chaplain</span>
+                        <span class="officer-name">Father Mark Swartvagher</span>
+                        <span class="status excused">(E)</span>
+                    </div>
+                    <div class="officer-row">
+                        <span class="officer-title">Grand Knight</span>
+                        <span class="officer-name">Mike Campbell</span>
+                        <span class="status present">(P)</span>
+                    </div>
+                    <div class="officer-row">
+                        <span class="officer-title">Deputy Grand Knight</span>
+                        <span class="officer-name">Tom Clune</span>
+                        <span class="status present">(P)</span>
+                    </div>
+                    <div class="officer-row">
+                        <span class="officer-title">Chancellor</span>
+                        <span class="officer-name">—</span>
+                        <span class="status">—</span>
+                    </div>
+                    <div class="officer-row">
+                        <span class="officer-title">Warden</span>
+                        <span class="officer-name">Mike Nittolo</span>
+                        <span class="status absent">(A)</span>
+                    </div>
+                    <div class="officer-row">
+                        <span class="officer-title">Treasurer</span>
+                        <span class="officer-name">Mike Lelia</span>
+                        <span class="status absent">(A)</span>
+                    </div>
+                    <div class="officer-row">
+                        <span class="officer-title">Recorder</span>
+                        <span class="officer-name">Bob Brown</span>
+                        <span class="status present">(P)</span>
+                    </div>
+                    <div class="officer-row">
+                        <span class="officer-title">Advisor</span>
+                        <span class="officer-name">Brendon Moloney</span>
+                        <span class="status excused">(E)</span>
+                    </div>
+                    <div class="officer-row">
+                        <span class="officer-title">Financial Secretary</span>
+                        <span class="officer-name">Andy Colon</span>
+                        <span class="status present">(P)</span>
+                    </div>
+                    <div class="officer-row">
+                        <span class="officer-title">Inside Guard</span>
+                        <span class="officer-name">John Murray</span>
+                        <span class="status excused">(E)</span>
+                    </div>
+                    <div class="officer-row">
+                        <span class="officer-title">Outside Guard</span>
+                        <span class="officer-name">Gary Adames</span>
+                        <span class="status present">(P)</span>
+                    </div>
+                    <div class="officer-row">
+                        <span class="officer-title">Lecturer</span>
+                        <span class="officer-name">Mike Cooper</span>
+                        <span class="status absent">(A)</span>
+                    </div>
+                    <div class="officer-row">
+                        <span class="officer-title">Trustee (3 year)</span>
+                        <span class="officer-name">Bob Brown</span>
+                        <span class="status present">(P)</span>
+                    </div>
+                    <div class="officer-row">
+                        <span class="officer-title">Trustee (2 year)</span>
+                        <span class="officer-name">John Murray</span>
+                        <span class="status excused">(E)</span>
+                    </div>
+                    <div class="officer-row">
+                        <span class="officer-title">Trustee (1 year)</span>
+                        <span class="officer-name">Kevin O'Brien</span>
+                        <span class="status excused">(E)</span>
+                    </div>
+
+                    <div class="legend">
+                        <strong>Legend:</strong> (P) Present • (A) Absent • (E) Excused
+                    </div>
+                </div>
+
+                <div class="closing-info">
+                    <p><strong>Closing Prayer:</strong> Led by Mike Campbell</p>
+                    <p><strong>Meeting Ended:</strong> 8:30 PM</p>
+                    
+                    <div class="next-meetings">
+                        <h4>Upcoming Meetings</h4>
+                        <p><strong>December 27th, 2025:</strong> CANCELED</p>
+                        <p><strong>January 2026:</strong> Tuesday 13th & Saturday 24th</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Instructions for adding more minutes -->
+        <div class="intro-note" style="margin-top: 50px;">
+            <p><strong>Note:</strong> To add new meeting minutes, copy the "minutes-document" section above and paste it with the new information. Most recent minutes should appear at the top.</p>
+        </div>
+    </div>
+
+    <footer>
+        <div class="container">
+            <p><strong>St. Kevin Council #18180</strong></p>
+            <p>45-21 194th Street, Flushing, NY 11358</p>
+            <p>Email: st.Kevinskoc18180@gmail.com | Phone: (646) 265-7598</p>
+            <p style="margin-top: 20px; opacity: 0.8;">In Service to One, In Service to All</p>
+        </div>
+    </footer>
+
+    <script>
+        function toggleMenu() {
+            const navLinks = document.getElementById('navLinks');
+            navLinks.classList.toggle('active');
+        }
+    </script>
+</body>
+</html>
